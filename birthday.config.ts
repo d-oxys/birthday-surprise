@@ -25,7 +25,7 @@ export const birthdayConfig = {
     description: "Someone made something special for you. Open it when you're ready.",
     lang: "en",
     locale: "en-US", // format tanggal, contoh: "id-ID" untuk Bahasa Indonesia
-    siteUrl: "", // isi setelah deploy, contoh: "https://untuk-nadia.vercel.app"
+    siteUrl: "https://a-little-surprise-2026.web.app", // URL website setelah deploy
   },
 
   // ✏️ GANTI — nama penerima & pengirim
