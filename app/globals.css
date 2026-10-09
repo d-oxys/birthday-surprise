@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/*
+ * Colors come from birthday.config.ts → ThemeProvider → --theme-* variables.
+ * Do not hard-code colors in components; use these tokens instead
+ * (bg-primary, text-accent, border-ink/10, from-secondary, …).
+ */
+@theme inline {
+  --color-bg: var(--theme-background);
+  --color-bg-alt: var(--theme-background-alt);
+  --color-surface: var(--theme-surface);
+  --color-primary: var(--theme-primary);
+  --color-secondary: var(--theme-secondary);
+  --color-accent: var(--theme-accent);
+  --color-ink: var(--theme-text);
+  --color-muted: var(--theme-text-muted);
+  --color-deco: var(--theme-decoration);
+  --color-glow: var(--theme-glow);
+  --color-on-primary: var(--theme-button-text);
+  --color-paper: var(--theme-paper);
+  --color-paper-ink: var(--theme-paper-text);
+
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-caveat), "Segoe Script", cursive;
+}
+
+@theme {
+  --animate-twinkle: twinkle 3.2s ease-in-out infinite;
+  --animate-flicker: flicker 1.6s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-ping-slow: ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-shimmer: shimmer 6s linear infinite;
+  --animate-blink: blink 1s steps(1) infinite;
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.35; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  @keyframes flicker {
+    0%, 100% { transform: translateX(-50%) scale(1, 1) rotate(-1deg); }
+    25% { transform: translateX(-50%) scale(0.94, 1.06) rotate(1.5deg); }
+    50% { transform: translateX(-50%) scale(1.04, 0.96) rotate(-1.5deg); }
+    75% { transform: translateX(-50%) scale(0.97, 1.04) rotate(1deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.7); opacity: 0; }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -50% 0; }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+/* ---------- Base ---------- */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--theme-background);
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--theme-background);
+  color: var(--theme-text);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--theme-primary) 45%, transparent);
+  color: var(--theme-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 3px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+/* ---------- Reusable visual utilities ---------- */
+@utility glass {
+  background: color-mix(in oklab, var(--theme-surface) 58%, transparent);
+  border: 1px solid color-mix(in oklab, var(--theme-text) 11%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+@utility text-glow {
+  text-shadow:
+    0 0 18px color-mix(in oklab, var(--theme-glow) 45%, transparent),
+    0 0 48px color-mix(in oklab, var(--theme-glow) 25%, transparent);
+}
+
+@utility text-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--theme-text) 20%,
+    var(--theme-accent) 38%,
+    var(--theme-primary) 50%,
+    var(--theme-text) 68%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* text-shadow would paint over gradient text; use a filter glow instead */
+  text-shadow: none;
+  filter: drop-shadow(0 0 18px color-mix(in oklab, var(--theme-glow) 40%, transparent));
+  animation: var(--animate-shimmer);
+}
+
+@utility paper {
+  background-color: var(--theme-paper);
+  background-image:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in oklab, var(--theme-accent) 16%, transparent), transparent 55%),
+    radial-gradient(100% 80% at 100% 100%, color-mix(in oklab, var(--theme-primary) 14%, transparent), transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 31px,
+      color-mix(in oklab, var(--theme-paper-text) 6%, transparent) 31px 32px
+    );
+  color: var(--theme-paper-text);
+}
+
+@utility glow-ring {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--theme-primary) 35%, transparent),
+    0 10px 40px -8px color-mix(in oklab, var(--theme-glow) 60%, transparent);
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
