@@ -79,6 +79,11 @@ export interface BirthdayConfig {
      * Example: "2026-10-20T00:00:00+07:00" = 20 Oct 2026, 00:00 WIB.
      */
     date: string;
+    /**
+     * Optional date used ONLY while running `npm run dev` (handy for testing the countdown).
+     * The live site always uses `date`.
+     */
+    devDate?: string;
     /** IANA timezone used to display the date, e.g. "Asia/Jakarta". */
     timeZone: string;
     /** "24h" shows 00:00, "12h" shows 12:00 AM. */

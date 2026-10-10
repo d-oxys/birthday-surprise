@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ChevronDown, Images } from "lucide-react";
-import { config, fill } from "@/lib/content";
+import { birthdayDate, config, fill } from "@/lib/content";
 import { MagicButton } from "@/components/ui/MagicButton";
 import { Typewriter } from "./Typewriter";
 
@@ -58,7 +58,7 @@ export function BirthdayMessage({ onFinish, instant = false }: BirthdayMessagePr
         {/* corner ornaments */}
         <span aria-hidden className="pointer-events-none absolute inset-3 rounded-[22px] border border-paper-ink/10" />
         <span aria-hidden className="absolute top-6 right-6 font-display text-xs tracking-[0.3em] text-paper-ink/45 uppercase">
-          {config.birthday.date.slice(0, 4)}
+          {birthdayDate.slice(0, 4)}
         </span>
 
         <header className="relative text-center">

@@ -6,6 +6,14 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "headers": [
       {
+        "source": "**/!(*.*)",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      },
+      {
+        "source": "**/*.@(html|txt)",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      },
+      {
         "source": "/@(icon|opengraph-image)",
         "headers": [{ "key": "Content-Type", "value": "image/png" }]
       },

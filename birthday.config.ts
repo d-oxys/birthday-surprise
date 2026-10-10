@@ -39,37 +39,16 @@ export const birthdayConfig = {
     // ✏️ GANTI — format: "YYYY-MM-DDTHH:mm:ss+ZONA"
     // +07:00 = WIB, +08:00 = WITA, +09:00 = WIT
     date: "2026-10-13T00:00:00+07:00",
+    // Khusus `npm run dev` (untuk tes countdown). Website live tetap memakai `date`.
+    // Contoh: devDate: "2026-10-10T09:00:00+07:00",
     timeZone: "Asia/Jakarta",
     clock: "24h", // "24h" → 00:00, "12h" → 12:00 AM
     celebrationHours: 24, // berapa jam status "It's your day!" ditampilkan
-    lockUntilBirthday: false, // true = surat & sisanya terkunci sampai hari-H
+    lockUntilBirthday: true, // true = tidak bisa lanjut dari countdown sampai hari-H
   },
 
   // ---------------------------------------------------------------------------
-  // 1. WELCOME SCREEN
-  // ---------------------------------------------------------------------------
-  welcome: {
-    eyebrow: "Someone has a little surprise for you",
-    greeting: "Hey, {name}…",
-    subtitle: "Take a breath, find a quiet corner, and open this slowly. It was made just for you.",
-    button: "Open Your Surprise",
-    hint: "Best with sound on 🎧",
-  },
-
-  // ---------------------------------------------------------------------------
-  // 2. KADO INTERAKTIF (ketuk beberapa kali sampai terbuka)
-  // ---------------------------------------------------------------------------
-  gift: {
-    title: "A gift, wrapped in starlight",
-    subtitle: "It seems a little shy. Maybe it needs some encouragement…",
-    hints: ["Tap the gift", "Hmm… it moved! Tap again", "Almost there — one more time!"],
-    openedTitle: "There's a whole little world inside",
-    openedSubtitle: "And every piece of it is about you.",
-    button: "Let's see",
-  },
-
-  // ---------------------------------------------------------------------------
-  // 3. COUNTDOWN
+  // 1. COUNTDOWN (halaman pertama)
   // ---------------------------------------------------------------------------
   countdown: {
     eyebrow: "Counting down to",
@@ -82,7 +61,30 @@ export const birthdayConfig = {
     pastTitle: "The big day was {days} days ago",
     pastMessage: "…but celebrating you never really ends.",
     lockedMessage: "Patience ✨ The rest unlocks the moment your birthday begins.",
-    button: "Open your letter",
+    button: "Let's begin",
+  },
+
+  // ---------------------------------------------------------------------------
+  // 2. WELCOME SCREEN
+  // ---------------------------------------------------------------------------
+  welcome: {
+    eyebrow: "Someone has a little surprise for you",
+    greeting: "Hey, {name}…",
+    subtitle: "Take a breath, find a quiet corner, and open this slowly. It was made just for you.",
+    button: "Open Your Surprise",
+    hint: "Best with sound on 🎧",
+  },
+
+  // ---------------------------------------------------------------------------
+  // 3. KADO INTERAKTIF (ketuk beberapa kali sampai terbuka)
+  // ---------------------------------------------------------------------------
+  gift: {
+    title: "A gift, wrapped in starlight",
+    subtitle: "It seems a little shy. Maybe it needs some encouragement…",
+    hints: ["Tap the gift", "Hmm… it moved! Tap again", "Almost there — one more time!"],
+    openedTitle: "There's a whole little world inside",
+    openedSubtitle: "And every piece of it is about you.",
+    button: "Let's see",
   },
 
   // ---------------------------------------------------------------------------
@@ -179,7 +181,7 @@ export const birthdayConfig = {
     previous: "Previous",
     next: "Next",
     progressLabel: "Surprise progress",
-    stepLabels: ["Welcome", "Gift", "Countdown", "Letter", "Memories", "Finale"],
+    stepLabels: ["Countdown", "Welcome", "Gift", "Letter", "Memories", "Finale"],
   },
 
   // ---------------------------------------------------------------------------

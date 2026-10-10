@@ -16,10 +16,13 @@ import { WelcomeScreen } from "@/components/welcome/WelcomeScreen";
 import { config } from "@/lib/content";
 import { ProgressNav } from "./ProgressNav";
 
-const SCENES = ["welcome", "gift", "countdown", "letter", "memories", "finale"] as const;
+// The countdown comes first and (with lockUntilBirthday) gates everything after it.
+const SCENES = ["countdown", "welcome", "gift", "letter", "memories", "finale"] as const;
 type Scene = (typeof SCENES)[number];
 
 const HEART_SCENES: Scene[] = ["letter", "memories", "finale"];
+// Intro scenes hide the progress dots.
+const INTRO_SCENES: Scene[] = ["countdown", "welcome"];
 
 export function BirthdayExperience() {
   return (
@@ -33,7 +36,7 @@ export function BirthdayExperience() {
 
 function Experience() {
   const music = useMusic();
-  const [scene, setScene] = useState<Scene>("welcome");
+  const [scene, setScene] = useState<Scene>("countdown");
   const [visited, setVisited] = useState(0);
   const [letterRead, setLetterRead] = useState(false);
   const [flashes, setFlashes] = useState(0);
@@ -57,8 +60,9 @@ function Experience() {
   };
 
   const replay = () => {
+    // Start again from the welcome screen — the countdown has already been passed.
     setLetterRead(false);
-    setVisited(0);
+    setVisited(SCENES.indexOf("welcome"));
     setRun((r) => r + 1);
     setScene("welcome");
   };
@@ -72,14 +76,14 @@ function Experience() {
 
   let content: ReactNode;
   switch (scene) {
+    case "countdown":
+      content = <Countdown onNext={() => go("welcome")} />;
+      break;
     case "welcome":
       content = <WelcomeScreen onOpen={openSurprise} />;
       break;
     case "gift":
-      content = <GiftBox onNext={() => go("countdown")} />;
-      break;
-    case "countdown":
-      content = <Countdown onNext={() => go("letter")} />;
+      content = <GiftBox onNext={() => go("letter")} />;
       break;
     case "letter":
       content = <LetterScene onNext={finishLetter} reread={letterRead} />;
@@ -103,7 +107,7 @@ function Experience() {
         <span className="size-11" aria-hidden />
         <div className="pointer-events-auto">
           <AnimatePresence>
-            {scene !== "welcome" && (
+            {!INTRO_SCENES.includes(scene) && (
               <ProgressNav current={sceneIndex} visited={visited} onSelect={(i) => go(SCENES[i])} />
             )}
           </AnimatePresence>
@@ -128,7 +132,7 @@ function Experience() {
       </AnimatePresence>
 
       <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo({ top: 0, behavior: "instant" })}>
-        <SceneFrame key={`${scene}-${run}`} kind={scene} autoFocus={!(scene === "welcome" && run === 0)}>
+        <SceneFrame key={`${scene}-${run}`} kind={scene} autoFocus={!(scene === SCENES[0] && run === 0)}>
           {content}
         </SceneFrame>
       </AnimatePresence>

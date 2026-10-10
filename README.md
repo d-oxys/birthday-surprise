@@ -1,6 +1,6 @@
 # 🎁 Birthday Surprise
 
-Website kejutan ulang tahun yang interaktif: welcome screen berbintang → kado yang harus diketuk → countdown → amplop bersegel & surat bertahap → galeri kenangan → kue dengan lilin yang bisa ditiup → grand finale.
+Website kejutan ulang tahun yang interaktif: countdown (terkunci sampai hari-H) → welcome screen berbintang → kado yang harus diketuk → amplop bersegel & surat bertahap → galeri kenangan → kue dengan lilin yang bisa ditiup → grand finale.
 
 Dibangun dengan Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Motion, Lucide React, dan canvas-confetti.
 
@@ -25,7 +25,8 @@ npm run build && npm start
 | --- | --- |
 | Nama penerima & pengirim | `recipient.name`, `sender.name` |
 | Tanggal & jam countdown | `birthday.date` (contoh `"2026-10-20T00:00:00+07:00"`), `birthday.timeZone` |
-| Kunci surat sampai hari-H | `birthday.lockUntilBirthday: true` |
+| Kunci halaman countdown sampai hari-H | `birthday.lockUntilBirthday: true` |
+| Tanggal tes saat `npm run dev` | `birthday.devDate` |
 | Sapaan pembuka & tombol | `welcome` |
 | Isi surat (bisa banyak bagian) | `letter.sections`, `letter.closing` |
 | Foto kenangan | `memories.items` |
@@ -54,7 +55,10 @@ Semua warna berasal dari `theme` di config → dijadikan CSS variables → dipak
 
 ## Menguji kondisi countdown
 
-Tambahkan parameter di URL (tanpa mengubah config):
+Countdown adalah halaman pertama. Dengan `birthday.lockUntilBirthday: true`, tombol lanjut terkunci sampai waktunya tiba.
+
+- **`birthday.devDate`** — tanggal khusus saat `npm run dev` (misalnya hari ini jam 09:00) untuk mengetes kunci & transisinya. Website live (`npm run build` / deploy) selalu memakai `birthday.date`.
+- Parameter URL berikut **hanya berlaku saat `npm run dev`** (di website live diabaikan, jadi kunci tidak bisa dibobol):
 
 - `?simulate=soon` — mulai 10 detik sebelum hari-H, untuk melihat transisi ke perayaan
 - `?simulate=today` — tampilan "It's your day!"

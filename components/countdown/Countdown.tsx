@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useSyncExternalStore } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, CalendarHeart, HeartHandshake, Lock, PartyPopper } from "lucide-react";
-import { config, fill } from "@/lib/content";
+import { allowSimulation, birthdayDate, config, fill } from "@/lib/content";
 import { getClockSnapshot, getServerClockSnapshot, subscribeClock } from "@/lib/clock";
 import { getCountdown, simulatedNow, type CountdownState } from "@/lib/countdown";
 import { burst, celebrate } from "@/lib/confetti";
@@ -12,7 +12,7 @@ import { SceneHeader } from "@/components/ui/SceneHeader";
 import { RollingNumber } from "./RollingNumber";
 
 const noopSubscribe = () => () => {};
-const readSimulate = () => new URLSearchParams(window.location.search).get("simulate");
+const readSimulate = () => (allowSimulation ? new URLSearchParams(window.location.search).get("simulate") : null);
 const readSimulateServer = () => null;
 
 function formatDate(timestamp: number) {
@@ -34,7 +34,7 @@ function formatDate(timestamp: number) {
 export function Countdown({ onNext }: { onNext: () => void }) {
   const now = useSyncExternalStore(subscribeClock, getClockSnapshot, getServerClockSnapshot);
   const simulate = useSyncExternalStore(noopSubscribe, readSimulate, readSimulateServer);
-  const target = useMemo(() => Date.parse(config.birthday.date), []);
+  const target = useMemo(() => Date.parse(birthdayDate), []);
   const invalidDate = Number.isNaN(target);
 
   const state: CountdownState | null =
