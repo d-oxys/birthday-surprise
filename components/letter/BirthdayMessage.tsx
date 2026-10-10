@@ -115,7 +115,9 @@ export function BirthdayMessage({ onFinish, instant = false }: BirthdayMessagePr
               transition={{ delay: instant ? 0.2 : 0.5, duration: 0.8 }}
               className="relative mt-10 text-right"
             >
-              <p className="text-left text-lg leading-relaxed font-medium text-paper-ink sm:text-xl">{fill(config.letter.closing)}</p>
+              {config.letter.closing && (
+                <p className="text-left text-lg leading-relaxed font-medium text-paper-ink sm:text-xl">{fill(config.letter.closing)}</p>
+              )}
               <p className="mt-8 text-sm text-paper-ink/70">{fill(config.letter.signOff)}</p>
               <motion.p
                 initial={{ clipPath: "inset(0 100% 0 0)" }}

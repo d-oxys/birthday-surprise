@@ -8,3 +8,7 @@ next-env.d.ts
 .DS_Store
 .firebase
 firebase-debug.log*
+
+# client source files (private)
+drive/
+*.zip

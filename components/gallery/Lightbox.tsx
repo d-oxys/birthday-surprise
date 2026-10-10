@@ -71,7 +71,7 @@ export function Lightbox({ items, index, direction, onClose, onNavigate }: Light
       ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      aria-label={item.caption}
+      aria-label={item.caption || item.alt}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[color-mix(in_oklab,var(--theme-background)_88%,transparent)] px-4 py-6 backdrop-blur-md"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -112,8 +112,8 @@ export function Lightbox({ items, index, direction, onClose, onNavigate }: Light
             <div className="relative h-[min(64dvh,680px)] w-full overflow-hidden rounded-2xl bg-black/20 shadow-2xl">
               <MemoryImage item={item} index={index} sizes="(max-width: 896px) 92vw, 896px" fit="contain" priority />
             </div>
-            <figcaption className="mt-5 text-center">
-              <p className="font-hand text-3xl text-ink sm:text-4xl">{item.caption}</p>
+            <figcaption className="mt-5 min-h-6 text-center">
+              {item.caption && <p className="font-hand text-3xl text-ink sm:text-4xl">{item.caption}</p>}
               {item.date && <p className="mt-1 text-xs font-semibold tracking-[0.25em] text-accent uppercase">{item.date}</p>}
             </figcaption>
           </motion.figure>

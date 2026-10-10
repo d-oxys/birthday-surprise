@@ -12,7 +12,7 @@ export function InteractiveEnvelope({ onOpened }: { onOpened: () => void }) {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const [opening, setOpening] = useState(false);
   const reduce = useReducedMotion();
-  const initial = config.sender.name.trim().charAt(0).toUpperCase() || "♥";
+  const initial = config.letter.sealInitial.trim() || "♥";
 
   const open = async () => {
     if (opening) return;
@@ -58,7 +58,7 @@ export function InteractiveEnvelope({ onOpened }: { onOpened: () => void }) {
           <div className="absolute inset-0 z-3 rounded-2xl bg-linear-to-b from-[color-mix(in_oklab,var(--theme-primary)_78%,white)] to-[color-mix(in_oklab,var(--theme-primary)_75%,var(--theme-secondary))] [clip-path:polygon(0_0,50%_54%,100%_0,100%_100%,0_100%)]">
             <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.18),transparent_45%)]" />
             <p className="absolute bottom-[9%] left-[8%] font-hand text-2xl text-on-primary/70 sm:text-3xl">
-              for {config.recipient.name}
+              {fill(config.letter.envelopeLabel)}
             </p>
           </div>
 

@@ -47,12 +47,15 @@ export interface MemoryItem {
   src?: string;
   /** Short description for screen readers. */
   alt: string;
-  /** Handwritten caption shown under the photo. */
-  caption: string;
+  /** Handwritten caption shown under the photo. Optional — leave empty for none. */
+  caption?: string;
   /** Optional small date / place label. */
   date?: string;
-  /** Frame shape. Defaults to "portrait". */
-  orientation?: "portrait" | "landscape" | "square";
+  /**
+   * Frame shape. Defaults to "portrait".
+   * portrait = 4:5, landscape = 4:3, square = 1:1, tall = 9:16 (phone photo), wide = 16:9.
+   */
+  orientation?: "portrait" | "landscape" | "square" | "tall" | "wide";
 }
 
 export interface BirthdayConfig {
@@ -78,6 +81,8 @@ export interface BirthdayConfig {
     date: string;
     /** IANA timezone used to display the date, e.g. "Asia/Jakarta". */
     timeZone: string;
+    /** "24h" shows 00:00, "12h" shows 12:00 AM. */
+    clock: "24h" | "12h";
     /** How many hours the "It's your day!" state lasts after the moment. */
     celebrationHours: number;
     /** If true, the letter & the rest stay locked until the birthday arrives. */
@@ -118,9 +123,14 @@ export interface BirthdayConfig {
     envelopeTitle: string;
     envelopeHint: string;
     sealButtonLabel: string;
+    /** Handwritten label on the envelope. Supports {name}. */
+    envelopeLabel: string;
+    /** Letter(s) stamped on the wax seal. */
+    sealInitial: string;
     heading: string;
     greeting: string;
     sections: LetterSection[];
+    /** Line after the last section. Leave empty ("") to skip it. */
     closing: string;
     signOff: string;
     tapToSkip: string;

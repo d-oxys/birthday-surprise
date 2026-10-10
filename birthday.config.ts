@@ -29,8 +29,8 @@ export const birthdayConfig = {
   },
 
   // ✏️ GANTI — nama penerima & pengirim
-  recipient: { name: "Nadia" },
-  sender: { name: "Raka" },
+  recipient: { name: "Simiju" },
+  sender: { name: "Pinji" },
 
   // ---------------------------------------------------------------------------
   // TANGGAL ULANG TAHUN (countdown)
@@ -38,8 +38,9 @@ export const birthdayConfig = {
   birthday: {
     // ✏️ GANTI — format: "YYYY-MM-DDTHH:mm:ss+ZONA"
     // +07:00 = WIB, +08:00 = WITA, +09:00 = WIT
-    date: "2026-10-20T00:00:00+07:00",
+    date: "2026-10-13T00:00:00+07:00",
     timeZone: "Asia/Jakarta",
+    clock: "24h", // "24h" → 00:00, "12h" → 12:00 AM
     celebrationHours: 24, // berapa jam status "It's your day!" ditampilkan
     lockUntilBirthday: false, // true = surat & sisanya terkunci sampai hari-H
   },
@@ -91,29 +92,33 @@ export const birthdayConfig = {
     envelopeTitle: "A letter, sealed with love",
     envelopeHint: "Tap the seal to open it",
     sealButtonLabel: "Break the seal and open the letter",
-    heading: "Happy Birthday, {name}",
+    envelopeLabel: "For {name}", // tulisan tangan di amplop
+    sealInitial: "S", // huruf di segel lilin
+    heading: "Happy Birthday, Simijuu.",
     greeting: "Dear {name},",
     // ✏️ GANTI — tambah/kurangi bagian sesukamu. Tiap bagian dibuka berurutan.
     sections: [
       {
-        title: "First, a confession",
-        body: "I've been planning this little surprise for a while now, and keeping it a secret was harder than I expected. Every time you smiled at me, I almost told you everything.",
+        body: "Kuucapkan sekali lagi, selamat ulang tahun yah. Maaf yah aku gabisa hadir di Bandung untuk ucapin langsung, atau sekedar kasi langsung hadiahnya. But I hope you understand it, hehe...",
       },
       {
-        title: "About you",
-        body: "You have this rare way of making people feel seen. You laugh with your whole heart, you care in quiet little ways, and you make the most ordinary days feel like something worth remembering.",
+        body: "Rib, di hari ulang tahunmu hari ini, aku berharap apa yang kamu cita citakan, impikan, dan rencanakan untuk kedepannya selalu berjalan lancer dan penuh dengan kemudahan. Aku berharap semakin bertambah usia kamu, semakin bijak dan luas juga hatimu. Aku berharap, rezeki melimpah, orang orang baik dan segala bentuk keberuntungan selalu menyertaimu. Dan yang terpenting, aku berharap akan Kesehatan dan umur Panjang mu. Entah kenapa, saat aku menyadari tak ada orang di sisiku selain kamu, satu hal yang kutakutkan adalah kehilangan kamu. Aku selama ini bertahan, kuat dan tetap menjalani semuanya karena ada kamu di hidupku. Jadi aku mohon jaga kesehatanmu ya rib. Hiduplah lebih lama, dan aku juga akan berusaha hidup lebih lama, hehehe.",
       },
       {
-        title: "This past year",
-        body: "We collected so many moments — the late-night talks, the spontaneous trips, the inside jokes nobody else understands. Thank you for every single one of them.",
+        body: "Rib, hal yang mau aku sampaikan adalah permohonan maaf. Atas segala hal hal yang menyakiti perasaan kamu selama ini. Mengingat seberapa sering aku nyakitin kamu, dan menyadari seberapa sering kamu bersabar menghadapinya dan memilih tetep milih aku, bikin aku ngerasa sakit :) Karena kamu ga seharusnya ngerasain rasa sakit itu semua, dan kamu malah tetep milih aku. Aku sadar seberapa jahat aku ke kamu, dan lebih jahatnya lagi, setelah apa yang aku lakuin ke kamu, aku lega kamu tetep milih aku. Tetep nemenin aku. Tetep ngebantu aku. Dan tetep memprioritaskan aku. Makasih ya rib :)\n\nAku tau, makasih dan maaf aja ga cukup, tapi kuharap untuk saat ini kamu bisa menerima itu.",
       },
       {
-        title: "For the year ahead",
-        body: "I hope this new chapter brings you calm mornings, brave adventures, and dreams that finally come true. And on the heavy days, I hope you remember you're never facing them alone.",
+        body: "Permohonan maaf ku berikutnya adalah, maaf karena kamu harus mencintai orang yang bahkan ga ngerti maksud cinta dan perasaan. Maaf kamu harus berkali kali ngerasain sakit hanya karena mencoba mengerti aku. Maaf karena kamu harus bertemu Wanita gila yang bahkan gatau cara pake perasaannya dan mengungkapkan perasaannya. Percayalah, aku juga sedang belajar, jadi, yoroshiku ne… hehe",
+      },
+      {
+        body: "Rib, aku gatau apakah gelang yang kukirimkan ke kamu sudah sampai di tanganmu, tapi itu adalah gelang ku dan gelang kamu.\n\nIngat kamu juga ingin ke Jepang untuk bangun karir pake visa gijinkoku kan? Kamu harus kasi langsung gelang itu ke aku di Jepang ya hehehe. Aku tungguin. Kamu harus janji. Aku gabakal nunggu atau kasi batas waktu tertentu lagi seperti tahun lalu. Karena aku tau betapa sulitnya proses Visa Gijinkoku. Tapi kalo kamu memang serius dan kamu mau, kamu bisa buktiin dengan datang kesini di depan aku langsung. Dan aku bakal certain semua perjalanan kita ke orang tua aku. Itu satu satunya cara buat buktiin ke mereka, Rib.",
+      },
+      {
+        body: "Jadi, aku Cuma mau bilang, semangat yaa. Aku yakin kamu bisa. Bukan hanya demi aku, tapi demi kamu juga.\n\nNanti kita ke tempat pohon wisteria nya Ubuyashiki, taman bunga nya Himel, dan tempat tempat lainnya. Kita rasis in balik Orang Jepang. Jadi, semangat yaa, Rib. Jalan kita masih sangat Panjang. GANBAROUU!!",
       },
     ],
-    closing: "Happy birthday. I'm so, so glad you were born.",
-    signOff: "With all my love,",
+    closing: "", // kosong = tidak ada kalimat penutup terpisah
+    signOff: "Until the wisterias bloom again,",
     tapToSkip: "Tap the letter to reveal it instantly",
     nextButton: "Keep reading",
     finishButton: "See our moments",
@@ -128,13 +133,17 @@ export const birthdayConfig = {
     subtitle: "Tap any photo to see it up close.",
     // ✏️ GANTI — taruh foto di folder public/memories/ lalu isi src-nya,
     // contoh: src: "/memories/01.jpg". Jika src kosong, tampil placeholder.
+    // caption & date opsional; orientation: portrait | landscape | square | tall (9:16) | wide (16:9)
     items: [
-      { src: "", alt: "Our first photo together", caption: "Where it all started", date: "Spring 2024", orientation: "portrait" },
-      { src: "", alt: "Watching the sunset", caption: "That sunset we didn't want to end", date: "Bali", orientation: "landscape" },
-      { src: "", alt: "Coffee at our favorite café", caption: "Our favorite little café", date: "Every Sunday", orientation: "square" },
-      { src: "", alt: "Laughing together", caption: "Laughing until it hurt", date: "Summer", orientation: "portrait" },
-      { src: "", alt: "On a road trip", caption: "Adventures, always", date: "Road trip", orientation: "landscape" },
-      { src: "", alt: "Birthday last year", caption: "And many more to come", date: "Last year", orientation: "portrait" },
+      { src: "/memories/01.jpg", alt: "Memory photo 1", orientation: "tall" },
+      { src: "/memories/02.jpg", alt: "Memory photo 2", orientation: "portrait" },
+      { src: "/memories/03.jpg", alt: "Memory photo 3", orientation: "landscape" },
+      { src: "/memories/04.jpg", alt: "Memory photo 4", orientation: "landscape" },
+      { src: "/memories/05.jpg", alt: "Memory photo 5", orientation: "wide" },
+      { src: "/memories/06.jpg", alt: "Memory photo 6", orientation: "portrait" },
+      { src: "/memories/07.jpg", alt: "Memory photo 7", orientation: "tall" },
+      { src: "/memories/08.jpg", alt: "Memory photo 8", orientation: "landscape" },
+      { src: "/memories/09.jpg", alt: "Memory photo 9", orientation: "portrait" },
     ],
     button: "One last surprise",
   },
@@ -148,13 +157,13 @@ export const birthdayConfig = {
     instruction: "Close your eyes, make a wish, then tap each flame to blow it out.",
     blowAllButton: "Blow them all",
     candles: 5,
-    wishMade: "Your wish is on its way ✨",
+    wishMade: "Your wish is on its way",
     finalTitle: "Happy Birthday, {name}",
     finalMessage: [
-      "Here's to another year of you — your laughter, your kindness, your beautiful chaos.",
-      "May every wish you made today find its way back to you.",
+      "Another year older, but we're still not done making memories together. Here's to more adventures, more laughter, more flower gardens, and all the crazy little things we still have waiting for us.",
+      "So stay healthy, keep dreaming, and live a long, long life, okay? We still have places to go and memories to make!",
     ],
-    signature: "— {sender}",
+    signature: "Your {sender}, always.",
     moreConfettiButton: "More confetti!",
     replayButton: "Relive the surprise",
     rereadButton: "Read the letter again",
@@ -201,7 +210,7 @@ export const birthdayConfig = {
     enabled: true,
     // Kosong = melodi kotak musik "Happy Birthday" bawaan (tanpa file).
     // Untuk lagu sendiri: taruh file di public/music/ lalu tulis "/music/nama-lagu.mp3"
-    src: "",
+    src: "/music/music.mp3",
     volume: 0.5,
   },
 
@@ -213,6 +222,6 @@ export const birthdayConfig = {
     particleDensity: 1, // 0.3 – 1.5
     floatingHearts: true,
     confetti: true,
-    typingSpeed: 32, // ms per huruf (lebih kecil = lebih cepat)
+    typingSpeed: 24, // ms per huruf (lebih kecil = lebih cepat)
   },
 } satisfies BirthdayConfig;

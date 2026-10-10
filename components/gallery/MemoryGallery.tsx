@@ -11,7 +11,13 @@ import { SceneHeader } from "@/components/ui/SceneHeader";
 import { Lightbox } from "./Lightbox";
 import { MemoryImage } from "./MemoryImage";
 
-const aspect = { portrait: "aspect-[4/5]", landscape: "aspect-[4/3]", square: "aspect-square" } as const;
+const aspect = {
+  portrait: "aspect-[4/5]",
+  landscape: "aspect-[4/3]",
+  square: "aspect-square",
+  tall: "aspect-[9/16]",
+  wide: "aspect-video",
+} as const;
 
 /** Scene 5 — scattered polaroids that fly in on scroll and open in a lightbox. */
 export function MemoryGallery({ onNext }: { onNext: () => void }) {
@@ -37,7 +43,7 @@ export function MemoryGallery({ onNext }: { onNext: () => void }) {
               key={i}
               type="button"
               onClick={() => setView({ index: i, direction: 0 })}
-              aria-label={`${item.caption}${item.date ? `, ${item.date}` : ""}`}
+              aria-label={[item.caption || item.alt, item.date].filter(Boolean).join(", ")}
               initial={{ opacity: 0, y: 50, rotate: 0 }}
               whileInView={{ opacity: 1, y: 0, rotate: tilt }}
               whileHover={{ rotate: 0, y: -8, scale: 1.03 }}
@@ -56,7 +62,9 @@ export function MemoryGallery({ onNext }: { onNext: () => void }) {
                 <MemoryImage item={item} index={i} sizes="(max-width: 768px) 46vw, 320px" />
                 <span className="absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </span>
-              <span className="mt-2.5 block px-1 font-hand text-xl leading-tight text-paper-ink sm:text-2xl">{item.caption}</span>
+              {item.caption && (
+                <span className="mt-2.5 block px-1 font-hand text-xl leading-tight text-paper-ink sm:text-2xl">{item.caption}</span>
+              )}
               {item.date && (
                 <span className="mt-0.5 block px-1 text-[10px] font-semibold tracking-[0.2em] text-paper-ink/55 uppercase">
                   {item.date}

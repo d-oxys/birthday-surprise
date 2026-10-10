@@ -16,7 +16,12 @@ const readSimulate = () => new URLSearchParams(window.location.search).get("simu
 const readSimulateServer = () => null;
 
 function formatDate(timestamp: number) {
-  const options: Intl.DateTimeFormatOptions = { dateStyle: "full", timeStyle: "short", timeZone: config.birthday.timeZone };
+  const options: Intl.DateTimeFormatOptions = {
+    dateStyle: "full",
+    timeStyle: "short",
+    timeZone: config.birthday.timeZone,
+    hourCycle: config.birthday.clock === "24h" ? "h23" : "h12",
+  };
   try {
     return new Intl.DateTimeFormat(config.meta.locale, options).format(timestamp);
   } catch {
